@@ -1,0 +1,19 @@
+<h1>New Idea</h1>
+
+<% if @idea.errors.any? %>
+<ul>
+  <% @idea.errors.full_messages.each do |msg| %>
+  <li><%= msg %></li>
+</ul>
+<% end %>
+<% end %>
+
+<%= form_for @idea do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, class: "form-control" %>
+<br>
+  <%= f.label :body %>
+  <%= f.text_area :body, class: "form-control" %>
+<br>
+  <%= f.submit class: "btn btn-info" %>
+<% end %>
