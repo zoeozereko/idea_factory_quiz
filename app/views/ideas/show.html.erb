@@ -1,20 +1,20 @@
 <h3><%= @idea.title %></h3>
 <p><%= @idea.body %></p>
+<% if @idea.user.present? %>
+<p>Created by: <%= @idea.user.name_display %></p>
+<% end %>
 
 <p>Likes: <%= @idea.likes.count %> </p>
 <%#= link_to "Like", idea_likes_path(@idea), method: :post, class: "btn btn-primary" %>
-<% like = @idea.likes.find_by_user_id(current_user.id) if user_signed_in? %>
-<% if like %>
-  <%= link_to fa_icon("heart-o 3x"), idea_like_path(@idea, like), method: :delete, style: "color:red" %>
+<% if @like %>
+  <%= link_to fa_icon("heart 3x"), idea_like_path(@idea, @like), method: :delete, style: "color:red" %>
 <% else %>
-<%= link_to fa_icon("heart 3x"), idea_likes_path(@idea), method: :post, style: "color:red" %>
+<%= link_to fa_icon("heart-o 3x"), idea_likes_path(@idea), method: :post, style: "color:red" %>
 <% end %>
 
-
 <p>Joins: <%= @idea.joins.count %> </p>
-<% join = @idea.joins.find_by_user_id(current_user.id) if user_signed_in? %>
-<% if join %>
-  <%= link_to "Un-join", idea_join_path(@idea, join), method: :delete, class: "btn btn-danger" %>
+<% if @join %>
+<%= link_to "Un-join", idea_join_path(@idea, @join), method: :delete, class: "btn btn-danger" %>
 <% else %>
 <%= link_to "Join", idea_joins_path(@idea), method: :post, class: "btn btn-primary" %>
 <% end %>

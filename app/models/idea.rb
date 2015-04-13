@@ -11,8 +11,12 @@ class Idea < ActiveRecord::Base
 
   validates :title, length: {minimum: 10}
 
-  # def join_for(user)
-  #   joins.find_by_user_id(user.id) if user 
-  # end
+  def join_for(user)
+    joins.find_by_user_id(user.id) if user 
+  end
+
+  def like_for(user)
+    likes.find_by_user_id(user.id) if user 
+  end
 
 end

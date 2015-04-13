@@ -22,10 +22,10 @@ class IdeasController < ApplicationController
   def show
     @idea = Idea.find(params[:id])
     @comment = Comment.new
-    #@join = @idea.join_for(current_user) if user_signed_in?
+    @join = @idea.join_for(current_user) if user_signed_in?
+    @like = @idea.like_for(current_user) if user_signed_in?
   end
     
-
 
   private
   def idea_params

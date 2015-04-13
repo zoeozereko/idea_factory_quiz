@@ -14,6 +14,7 @@ class LikesController < ApplicationController
 
   def destroy
     like = current_user.likes.find(params[:id]) 
+    like.destroy
     redirect_to like.idea, notice: "Unliked!"
   end
 
