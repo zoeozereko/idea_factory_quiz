@@ -11,6 +11,9 @@ class Idea < ActiveRecord::Base
 
   validates :title, length: {minimum: 10}
 
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => ""
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+
   def join_for(user)
     joins.find_by_user_id(user.id) if user 
   end

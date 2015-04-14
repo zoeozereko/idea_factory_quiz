@@ -3,7 +3,10 @@ class IdeasController < ApplicationController
 
   def index
     @ideas = Idea.all
-    #@ideas = current_user.ideas.all
+    @idea = Idea.new
+    #@idea = Idea.find(params[:id])
+    #@join = @idea.join_for(current_user) if user_signed_in?
+    #@like = @idea.like_for(current_user) if user_signed_in?
   end
 
   def new
@@ -29,8 +32,9 @@ class IdeasController < ApplicationController
     
 
   private
+
   def idea_params
-    params.require(:idea).permit(:title, :body)
+    params.require(:idea).permit(:title, :body, :image)
   end
 
 end

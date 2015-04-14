@@ -1,27 +1,25 @@
 <h3><%= @idea.title %></h3>
 <p><%= @idea.body %></p>
+<%= image_tag @idea.image.url(:medium) %>
 <br>
 <p> Members: </p>
 <% @idea.joins.each do |join| %>
 <p><%= join.user.name_display %>
 <% end %></p>
 
-<p>Likes: <%= @idea.likes.count %> </p>
-<%#= link_to "Like", idea_likes_path(@idea), method: :post, class: "btn btn-primary" %>
-<p><% if @like %>
+<p>Likes: <%= @idea.likes.count %> 
+<% if @like %>
   <%= link_to fa_icon("heart 3x"), idea_like_path(@idea, @like), method: :delete, style: "color:red" %>
 <% else %>
 <%= link_to fa_icon("heart-o 3x"), idea_likes_path(@idea), method: :post, style: "color:red" %>
-<% end %></p>
+<% end %> 
 
-<p>Joins: <%= @idea.joins.count %> </p>
-<p><% if @join %>
+Joins: <%= @idea.joins.count %> 
+<% if @join %>
 <%= link_to "Un-join", idea_join_path(@idea, @join), method: :delete, class: "btn btn-danger" %>
 <% else %>
 <%= link_to "Join", idea_joins_path(@idea), method: :post, class: "btn btn-primary" %>
 <% end %></p>
-<hr>
-
 
 <h2> Comments </h2>
 
@@ -30,6 +28,7 @@
 <br>
 <%= f.submit %>
 <% end %>
+<hr>
 
 <% @idea.comments.each do |comment| %>
   <p><%= comment.body %></p>
