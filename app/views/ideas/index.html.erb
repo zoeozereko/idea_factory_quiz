@@ -3,4 +3,14 @@
 <% @ideas.each do |idea| %>
   <h3><%= link_to idea.title, idea %></h3>
   <p><%= idea.body %></p>
+<% if idea.user.present? %>
+<p>Created by: <%= idea.user.name_display %></p>
   <% end %>
+  <br>
+  
+  <hr>
+ <% end %>
+
+
+
+
